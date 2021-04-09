@@ -1,0 +1,78 @@
+<div class="row">
+
+  <div class="col-sm-6" *ngIf="padawanSelecionado">
+
+    <div class="row">
+      <div class="mr-auto">
+        <app-titulo [titulo]="'Padawan: ' + padawanSelecionado.id"></app-titulo>
+      </div>
+      <div class="mt-1">
+        <button class="btn btn-sm btn-outline-danger" (click)="voltar()">Fechar</button>
+      </div>
+    </div>
+    <form>
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Nome</label>
+        <input type="text" value="{{padawanSelecionado.nome}}" class="form-control">
+      </div>
+      <div class="mb-3">  
+        <label for="formGroupExampleInput2" class="form-label">E-mail</label>
+        <input type="text" value="{{padawanSelecionado.email}}" class="form-control" >
+      </div>
+    
+    <div class="form-group">
+      <hr>
+      <button class="btn btn-success">Enviar</button>
+    </div>
+  
+  </form>
+</div>
+    <div [ngClass]="{'col-sm-6': padawanSelecionado, 'col-sm-12': !padawanSelecionado}" >
+      <app-titulo [titulo]="titulo"></app-titulo>
+      <table class="table table-hover">
+        <thead class="table-dark">
+                <tr>
+                  <th scope="col">Vizualizar</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Opções</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let padawan of padawans" >
+                  <td><button (click)="padawanSelect(padawan)" class="btn btn-sm btn-warning">Detalhes</button></td>
+                  <td scope="row">{{padawan.id}}</td>
+                  <td>{{padawan.nome}}</td>
+                  <td>{{padawan.email}}</td>
+                  <td>
+                    <div class="btn-group">
+                      
+                      <button class="btn btn-sm btn-outline-primary">Jedi</button>
+                      <button class="btn btn-sm btn-outline-danger">Desativar</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+      </table>
+    
+    </div>
+</div>
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

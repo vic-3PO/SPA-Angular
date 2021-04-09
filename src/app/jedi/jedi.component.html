@@ -1,0 +1,60 @@
+<div class="row">
+
+  <div class="col-sm-6" *ngIf="jediSelecionado">
+  
+    <div class="row">
+      <div class="mr-auto">
+        <app-titulo [titulo]="'Jedi: '+ jediSelecionado.id"></app-titulo>
+      </div>
+      <div class="mt-1">
+        <button class="btn btn-outline-danger" (click)="voltar()">Fechar</button>
+      </div>
+    </div>
+    <form>
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Nome</label>
+        <input type="text" value="{{jediSelecionado.nome}}" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">E-mail</label>
+        <input type="text" value="{{jediSelecionado.email}}" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-success">Enviar</button>
+      </div>
+    
+    </form>
+  </div>
+  
+  <div [ngClass]="{'col-sm-6': jediSelecionado, 'col-sm-12': !jediSelecionado}">
+    <app-titulo [titulo]="titulo"></app-titulo>
+    <table class="table table-hover">
+      <thead class="table-dark">
+              <tr>
+                <th scope="col">Vizualizar</th>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let jedi of jedis" (click)="jediSelect(jedi)">
+                <td><button (click)="jediSelect(jedi)" class="btn btn-sm btn-warning">Detalhes</button></td>
+                <th scope="row">{{jedi.id}}</th>
+                <td>{{jedi.nome}}</td>
+                <td>{{jedi.email}}</td>
+                <td>
+                  <div class="btn-group">
+                    
+                    <button class="btn btn-sm btn-outline-primary">Padawan</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+    </table>
+  </div>
+
+</div>
